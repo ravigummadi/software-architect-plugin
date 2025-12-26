@@ -1,0 +1,14 @@
+{
+  "name": "software-architect-marketplace",
+  "plugins": [
+    {
+      "id": "software-architect",
+      "name": "Software Architect",
+      "description": "Expert software architecture and performance guidance. Reviews for red flags, module depth, complexity, FCIS pattern, and inefficient patterns based on Jeff Dean's performance hints.",
+      "source": {
+        "source": "git",
+        "url": "https://github.com/ravigummadi/software-architect-plugin.git"
+      }
+    }
+  ]
+}
