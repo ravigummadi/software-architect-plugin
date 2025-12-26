@@ -1,0 +1,25 @@
+{
+  "name": "software-architect",
+  "version": "1.0.0",
+  "description": "Expert software architecture guidance based on 'A Philosophy of Software Design'. Reviews for red flags, module depth, complexity, and FCIS pattern adherence.",
+  "author": {
+    "name": "Ravi Gummadi",
+    "email": "ravi@example.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ravigummadi/software-architect-plugin"
+  },
+  "keywords": [
+    "architecture",
+    "design",
+    "code-review",
+    "refactoring",
+    "complexity",
+    "deep-modules",
+    "fcis",
+    "functional-core",
+    "imperative-shell"
+  ],
+  "license": "MIT"
+}
