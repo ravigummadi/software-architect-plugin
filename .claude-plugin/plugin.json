@@ -1,7 +1,7 @@
 {
   "name": "software-architect",
-  "version": "1.1.0",
-  "description": "Expert software architecture and performance guidance. Reviews for red flags, module depth, complexity, FCIS pattern, and inefficient patterns based on Jeff Dean's performance hints.",
+  "version": "2.0.0",
+  "description": "Architecture review using 'A Philosophy of Software Design' principles. Modes: red-flags, depth, complexity, fcis, performance, split, review.",
   "author": {
     "name": "Ravi Gummadi",
     "email": "ravi@gummadi.me"
@@ -12,14 +12,11 @@
   },
   "keywords": [
     "architecture",
-    "design",
-    "code-review",
-    "refactoring",
     "complexity",
     "deep-modules",
     "fcis",
-    "functional-core",
-    "imperative-shell"
+    "performance",
+    "code-review"
   ],
   "license": "MIT"
 }
