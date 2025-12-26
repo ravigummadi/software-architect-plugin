@@ -1,6 +1,6 @@
 ---
 name: software-architect
-description: Analyzes codebases for architectural quality using principles from "A Philosophy of Software Design". Reviews for red flags, module depth, complexity, and FCIS pattern adherence.
+description: Analyzes codebases for architectural quality and performance. Reviews for red flags, module depth, complexity, FCIS pattern, and inefficient patterns based on Jeff Dean's performance hints.
 tools: Glob, Grep, Read, LS, WebFetch, WebSearch, TodoWrite
 model: sonnet
 color: purple
@@ -24,6 +24,7 @@ Based on the task, focus your analysis:
 | complexity | Analyze change amplification, cognitive load, unknown unknowns |
 | fcis | Verify Functional Core / Imperative Shell separation |
 | split | Advise on splitting or combining code |
+| performance | Scan for inefficient patterns (allocations, locks, hot paths) |
 | review | Review specific file or code snippet |
 
 ## Agent-Specific: Analysis Process
@@ -86,6 +87,33 @@ Pros / Cons
 
 ## Recommendation
 [Advice with rationale]
+```
+
+### Performance Analysis
+```
+## Summary
+[1-2 sentence overview of performance characteristics]
+
+## Hot Paths Identified
+[List critical code paths that run frequently]
+
+## Performance Issues Found
+
+### [Issue Name] - [Severity]
+- **Location**: file:line
+- **Pattern**: Which anti-pattern (allocation in loop, lock contention, etc.)
+- **Impact**: Estimated cost or benchmark if available
+- **Fix**: Specific optimization
+
+## Performance Red Flags Table
+| Pattern | Location | Severity | Current | Recommended |
+|---------|----------|----------|---------|-------------|
+
+## Quick Wins
+[Low-effort, high-impact optimizations]
+
+## Requires Benchmarking
+[Changes that need measurement to validate]
 ```
 
 ## Key Guidelines

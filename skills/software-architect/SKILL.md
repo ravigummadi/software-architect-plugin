@@ -224,9 +224,61 @@ Make code obvious so readers' first guesses are correct:
 3. Keep comments near the code they describe
 4. Maintain consistency with existing patterns
 
+## Performance Analysis
+
+When reviewing for performance (invoke with `performance` mode), apply these principles from [Abseil Performance Hints](https://abseil.io/fast/hints.html):
+
+### Performance Red Flags
+
+| Pattern | Problem | Fix |
+|---------|---------|-----|
+| **Allocation in hot loop** | Memory pressure | Reuse buffers, pre-size containers |
+| **Lock per operation** | Contention overhead | Batch operations, sharding |
+| **Protobuf in hot path** | 20X slower than structs | Use plain structs/arrays |
+| **Logging in hot path** | Cost even when disabled | Remove or sample |
+| **Copying large objects** | Memory bandwidth | Move semantics, views |
+| **O(N) where O(1) possible** | Algorithmic waste | Hash tables, precomputation |
+| **Virtual calls in loop** | Indirection cost | Devirtualize, templates |
+| **Stats on every operation** | Overhead accumulates | Sample (1 in 32) |
+
+### Key Performance Principles
+
+1. **Measure First**: Profile before optimizing. Focus on the critical 3%.
+2. **Bulk Operations**: Batch work under single lock/transaction
+3. **Pre-size Containers**: Avoid repeated reallocations
+4. **Reuse Temporaries**: Hoist allocations outside loops
+5. **Fast Paths**: Optimize common cases, slow path for edge cases
+6. **Lazy Computation**: Defer expensive work until needed
+7. **Sharding**: Reduce contention through partitioning (16 shards = 2X throughput)
+8. **Sampling**: Stats/logging on 1-in-N operations, not all
+
+### Performance Review Checklist
+
+When reviewing code for performance:
+
+1. **Hot Paths Identified?** Know which code runs frequently
+2. **Allocations Minimized?** Check for allocation in loops
+3. **Locks Amortized?** Batch operations under single lock
+4. **Data Locality?** Hot data together, cold data separate
+5. **Appropriate Data Structures?** O(1) where possible
+6. **Unnecessary Work Avoided?** Fast paths, caching, lazy eval
+7. **Contention Reduced?** Sharding, lock-free where appropriate
+8. **Logging/Stats Sampled?** Not on every operation
+
+### Know Your Numbers
+
+| Operation | Latency |
+|-----------|---------|
+| L1 cache hit | 0.5 ns |
+| L2 cache hit | 7 ns |
+| Main memory | 50-100 ns |
+| SSD random read | 150 μs |
+| Network (same DC) | 0.5 ms |
+
 ## References
 
 For detailed examples and extended discussion, see:
 - [references/principles.md](references/principles.md) — Full design principles with examples
 - [references/red-flags.md](references/red-flags.md) — Detailed red flag explanations
 - [references/patterns.md](references/patterns.md) — Common patterns and anti-patterns
+- [references/performance-hints.md](references/performance-hints.md) — Performance optimization patterns from Jeff Dean

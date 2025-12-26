@@ -1,10 +1,10 @@
 # Software Architect Plugin
 
-Expert software architecture guidance based on John Ousterhout's **"A Philosophy of Software Design"** with the Functional Core / Imperative Shell pattern.
+Expert software architecture and performance guidance based on John Ousterhout's **"A Philosophy of Software Design"** and **Jeff Dean's Performance Hints** from Abseil.
 
 ## Overview
 
-This plugin helps you write better code and design better systems by applying battle-tested architectural principles. Use it for code reviews, module design, decomposition decisions, and complexity analysis.
+This plugin helps you write better code and design better systems by applying battle-tested architectural and performance principles. Use it for code reviews, module design, decomposition decisions, complexity analysis, and identifying inefficient patterns.
 
 ## Installation
 
@@ -44,6 +44,7 @@ Invoke the skill for architecture guidance:
 /software-architect complexity     # Analyze complexity manifestations
 /software-architect fcis           # Verify Functional Core / Imperative Shell
 /software-architect split          # Advise on splitting or combining code
+/software-architect performance    # Scan for inefficient patterns
 /software-architect review <file>  # Review specific file
 ```
 
@@ -107,6 +108,25 @@ email.send(get_expired_users(db.get_users(), date.today()))
 | Hard to Name | Difficulty naming suggests unclear purpose |
 | Nonobvious Code | Behavior not clear from quick reading |
 
+### Performance Red Flags (Jeff Dean's Hints)
+
+| Pattern | Problem | Fix |
+|---------|---------|-----|
+| Allocation in hot loop | Memory pressure | Reuse buffers, pre-size |
+| Lock per operation | Contention overhead | Batch, sharding |
+| Protobuf in hot path | 20X slower than structs | Use plain structs |
+| Logging in hot path | Cost even when disabled | Remove or sample |
+| O(N) where O(1) possible | Algorithmic waste | Hash tables |
+| Stats on every operation | Overhead accumulates | Sample (1 in 32) |
+
+**Key Numbers:**
+| Operation | Latency |
+|-----------|---------|
+| L1 cache | 0.5 ns |
+| Main memory | 50-100 ns |
+| SSD read | 150 μs |
+| Network (DC) | 0.5 ms |
+
 ## Output Examples
 
 ### Architecture Review
@@ -151,16 +171,17 @@ Well-structured codebase following FCIS pattern.
 ```
 software-architect/
 ├── .claude-plugin/
-│   └── plugin.json         # Plugin metadata
+│   └── plugin.json            # Plugin metadata
 ├── agents/
 │   └── software-architect.md  # Agent definition
 ├── skills/
 │   └── software-architect/
-│       ├── SKILL.md        # Core principles
+│       ├── SKILL.md           # Core principles
 │       └── references/
 │           ├── principles.md
 │           ├── red-flags.md
-│           └── patterns.md
+│           ├── patterns.md
+│           └── performance-hints.md  # Jeff Dean's hints
 └── README.md
 ```
 
@@ -182,6 +203,7 @@ software-architect/
 - [A Philosophy of Software Design](https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201) by John Ousterhout
 - [Functional Core, Imperative Shell](https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell) by Gary Bernhardt
 - [Google Testing Blog: FCIS](https://testing.googleblog.com/2025/10/simplify-your-code-functional-core.html)
+- [Abseil Performance Hints](https://abseil.io/fast/hints.html) by Jeff Dean & Google
 
 ## Author
 
@@ -193,4 +215,4 @@ MIT
 
 ## Version
 
-1.0.0
+1.1.0
