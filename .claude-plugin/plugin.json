@@ -4,7 +4,7 @@
   "description": "Expert software architecture and performance guidance. Reviews for red flags, module depth, complexity, FCIS pattern, and inefficient patterns based on Jeff Dean's performance hints.",
   "author": {
     "name": "Ravi Gummadi",
-    "email": "ravi@example.com"
+    "email": "ravi@gummadi.me"
   },
   "repository": {
     "type": "git",
