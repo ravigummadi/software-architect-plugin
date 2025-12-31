@@ -1,7 +1,7 @@
 {
   "name": "software-architect",
-  "version": "2.0.0",
-  "description": "Architecture review using 'A Philosophy of Software Design' principles. Modes: red-flags, depth, complexity, fcis, performance, split, review.",
+  "version": "3.0.0",
+  "description": "Architecture review using 'A Philosophy of Software Design' principles. Optimized for Claude sub-agent efficiency. Modes: red-flags, depth, complexity, fcis, performance, split, comments, naming, consistency, tactical, review.",
   "author": {
     "name": "Ravi Gummadi",
     "email": "ravi@gummadi.me"
@@ -16,7 +16,11 @@
     "deep-modules",
     "fcis",
     "performance",
-    "code-review"
+    "code-review",
+    "comments",
+    "naming",
+    "consistency",
+    "sub-agent"
   ],
   "license": "MIT"
 }
